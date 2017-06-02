@@ -8,34 +8,34 @@ function [ D ] = L2( bins, qr, qg, qb, r, g, b )
         for i=1:h
             temp = temp + double(qr(i)-r(i))^2;
         end
-        D = sqrt(temp * 2/16);
+        D = sqrt(temp) * 2/16;
         temp = 0;
         for i=1:h
             temp = temp + double(qg(i)-g(i))^2;
         end
-        D = D + sqrt(temp * 4/16);
+        D = D + sqrt(temp) * 4/16;
         temp = 0;
         for i=1:h
             temp = temp + double(qb(i)-b(i))^2;
         end
-        D = D + sqrt(temp * 2/16);
+        D = D + sqrt(temp) * 2/16;
     elseif(bins == 128)
         temp = 0;
         [h, w] = size(qr);
         for i=1:h
             temp = temp + double(qr(i)-r(i))^2;
         end
-        D = sqrt(temp * 4/128);
+        D = sqrt(temp) * 4/128;
         temp = 0;
         for i=1:h
             temp = temp + double(qg(i)-g(i))^2;
         end
-        D = D + sqrt(temp * 8/128);
+        D = D + sqrt(temp) * 8/128;
         temp = 0;
         for i=1:h
             temp = temp + double(qb(i)-b(i))^2;
         end
-        D = D + sqrt(temp * 4/128);
+        D = D + sqrt(temp) * 4/128;
     end
 
 
