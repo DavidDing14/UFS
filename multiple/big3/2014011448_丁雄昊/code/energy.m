@@ -48,10 +48,10 @@ distance = dis(g,g1);
 disp('A sen6000.wav - B sen6000.wav 基音周期 distance = ');
 disp(distance);
 
-y=audioread('../data/exp2/AB/6000.wav');
-g1=cal_energy(y);
+x=audioread('../data/exp2/AB/6000.wav');
+g=cal_energy(x);
 distance = dis(g,g1);
-disp('A sen6000.wav - AtoB sen6000.wav 基音周期 distance = ');
+disp('AtoB sen6000.wav - B sen6000.wav 基音周期 distance = ');
 disp(distance);
 
 %6015
@@ -63,10 +63,10 @@ distance = dis(g,g1);
 disp('A sen6015.wav - B sen6015.wav 基音周期 distance = ');
 disp(distance);
 
-y=audioread('../data/exp2/AB/6015.wav');
-g1=cal_energy(y);
+x=audioread('../data/exp2/AB/6015.wav');
+g=cal_energy(x);
 distance = dis(g,g1);
-disp('A sen6015.wav - AtoB sen6015.wav 基音周期 distance = ');
+disp('AtoB sen6015.wav - B sen6015.wav 基音周期 distance = ');
 disp(distance);
 
 %6028
@@ -78,10 +78,10 @@ distance = dis(g,g1);
 disp('A sen6028.wav - B sen6028.wav 基音周期 distance = ');
 disp(distance);
 
-y=audioread('../data/exp2/AB/6028.wav');
-g1=cal_energy(y);
+x=audioread('../data/exp2/AB/6028.wav');
+g=cal_energy(x);
 distance = dis(g,g1);
-disp('A sen6028.wav - AtoB sen6028.wav 基音周期 distance = ');
+disp('AtoB sen6028.wav - B sen6028.wav 基音周期 distance = ');
 disp(distance);
 
 %6044
@@ -93,10 +93,10 @@ distance = dis(g,g1);
 disp('A sen6044.wav - B sen6044.wav 基音周期 distance = ');
 disp(distance);
 
-y=audioread('../data/exp2/AB/6044.wav');
-g1=cal_energy(y);
+x=audioread('../data/exp2/AB/6044.wav');
+g=cal_energy(x);
 distance = dis(g,g1);
-disp('A sen6044.wav - AtoB sen6044.wav 基音周期 distance = ');
+disp('AtoB sen6044.wav - B sen6044.wav 基音周期 distance = ');
 disp(distance);
 
 %6147
@@ -108,8 +108,8 @@ distance = dis(g,g1);
 disp('A sen6147.wav - B sen6147.wav 基音周期 distance = ');
 disp(distance);
 
-y=audioread('../data/exp2/AB/6147.wav');
-g1=cal_energy(y);
+x=audioread('../data/exp2/AB/6147.wav');
+g=cal_energy(x);
 distance = dis(g,g1);
-disp('A sen6147.wav - AtoB sen6147.wav 基音周期 distance = ');
+disp('AtoB sen6147.wav - B sen6147.wav 基音周期 distance = ');
 disp(distance);
