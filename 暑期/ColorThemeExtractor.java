@@ -5992,6 +5992,55 @@ public class ColorThemeExtractor {
 		}
 	}
 	
+	//Factor analyse
+	//对模型输入文件group1_8_groupemotion_minpicture6_opinion01_shspanner01_28_minRatio_18_contactRatio_7_shRatio_10_6000_less10_withoutE.txt进行处理
+	//6/5, 今天去掉了social role来进行因子分析，输入文件仍是原来的，所以，要把所有的输出文件都去掉social role
+	//7/11，新工作
+	public static void factorAnalyse_dxh(int srRatio, int minRatio, int contactRatio, int shRatio){
+		try{
+			BufferedReader br = new BufferedReader(new FileReader(new File("output/getBasicFGMData/DavidDing/group1_8_groupemotion_minpicture6_opinion01_shspanner01_" + srRatio + "_minRatio_" + minRatio + "_contactRatio_" + contactRatio + "_shRatio_" + shRatio + "_6000_less10_withoutE.txt")));
+			
+			BufferedWriter bw1 = new BufferedWriter(new FileWriter(new File("output/factorAnalyse_dxh/2017.7.11/" + srRatio + minRatio + contactRatio + shRatio + "davidding-groupConnect.txt")));
+			
+			String line = "";
+			String str1 = "";
+			//7/11	DavidDing 只测试groupConnectType
+			String type_dxh = "groupConnectType";
+			//String types[] = {"gender", "marital", "occupation", "friendSize", "friendEmotion", "groupSize", "groupEmotion", "groupType", "groupSHType", "groupConnectType"};//"opinionleader", "shspanner",之前是有的
+			while((line = br.readLine()) != null){
+				String p[] = line.split(" "); //p[0] is label; p[1-25] is f1; 
+				//p[26-34]  others
+				if(p.length < 6){
+					bw1.append(line + "\n");
+					continue;
+				}
+				String label = p[0];
+				int i = 0;
+				str1 = label;
+				for(i = 1; i < p.length; i++){
+					if(p[i].length() <= 1)
+						continue;
+					String attri[] = p[i].split(":");
+					if(attri.length < 2){
+						System.out.println("maybe something error!");
+						continue;
+					}
+					String attriType = attri[0];
+					String attriValue = attri[1];
+					if(attriType.equals(type_dxh))
+						continue;
+					str1 += " " + attriType + ":" + attriValue;
+				}
+				bw1.append(str1+"\n");
+			}
+			br.close();
+			bw1.close();
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
@@ -6031,8 +6080,8 @@ public class ColorThemeExtractor {
 		//new ColorThemeExtractor().getImageStatics_dxh();//David Ding
 		//new ColorThemeExtractor().getIntimacy();//David Ding
 		//new ColorThemeExtractor().getGroupConnect_dxh();//David Ding
-//percent=28, minRatio=18, contactRatio=7, shRatio=10, tAP=6000
-		new ColorThemeExtractor().getFGMDataGroup2_dxh(6000, 28, 18, 7, 10);//David Ding
+		//new ColorThemeExtractor().getFGMDataGroup2_dxh(6000, 28, 18, 3, 10);//David Ding
+		new ColorThemeExtractor().factorAnalyse_dxh(28, 18, 80, 10);
 		//new ColorThemeExtractor().testEdge();
 		
 		// [data observation]
