@@ -1,3 +1,8 @@
+先进行contactRatio实验，4best
+之后percent实验，18best
+之后minRatio实验，20best
+最后shRatio实验,
+
 Groups_dxh/
 	groupConnect.txt	--存放每个群组连通度计算结果
 
