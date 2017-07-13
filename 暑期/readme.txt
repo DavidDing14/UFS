@@ -24,3 +24,7 @@ delete_ol_sh/	--去除ol\sh的模型
 	factorAnalyse_dxh/
 		2017.7.12_delete_ol_sh/
 			28188010davidding-groupConnect.txt	--去掉groupConnectType之后的样本文件
+			answer_davidding.txt	--最后一组是因子分析实验结果
+	connectRatio/
+		answer_davidding.txt	--12组实验结果
+		answer_order.txt	--12组实验顺序
