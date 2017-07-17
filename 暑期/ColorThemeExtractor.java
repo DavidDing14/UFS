@@ -5697,7 +5697,7 @@ public class ColorThemeExtractor {
 	//去掉用户opinion leader信息 2017-5-10
 	//增加structure hole spanner, percent也是sh spanner的比例阈值
 	//																																						percent=28, minRatio=18, contactRatio=7, shRatio=10, tAP=6000
-	public static void getFGMDataGroup2_dxh(int trainAndPredictNum, int percent, int minRatio, int contactRatio, int shRatio){
+	public static void getFGMDataGroup2_dxh(int trainAndPredictNum, int percent, int minRatio, float contactRatio, int shRatio){
 		try{
 			BufferedReader br = new BufferedReader(new FileReader(new File("output/getBasicFGMData/wenjing/baseline_8_" + trainAndPredictNum + "_less10_withoutE.txt")));
 			BufferedReader br2 = new BufferedReader(new FileReader(new File("output/getBasicFGMData/wenjing/userIdused.txt")));
@@ -5710,7 +5710,7 @@ public class ColorThemeExtractor {
 			//BufferedReader br7 = new BufferedReader(new FileReader(new File("output/Groups/groupEdgeConnectivity.txt")));//修改群组连通度的定义，该文件记录每个群组的边连通度
 			BufferedReader br8 = new BufferedReader(new FileReader(new File("output/SHspanner/userSHspanner_" + percent + ".txt")));//user and 1(yes) / 0(no)
 			BufferedReader br9 = new BufferedReader(new FileReader(new File("output/SHspanner/groupSHratio_" + percent + ".txt")));
-			BufferedWriter bw = new BufferedWriter(new FileWriter(new File("output/getBasicFGMData/DavidDing/group1_8_groupemotion_minpicture6_opinion01_shspanner01_" + percent+ "_minRatio_" + minRatio+ "_contactRatio_" + contactRatio + "_shRatio_" + shRatio + "_" + trainAndPredictNum + "_less10_withoutE.txt")));
+			BufferedWriter bw = new BufferedWriter(new FileWriter(new File("output/getBasicFGMData/DavidDing/shRatio/group1_8_groupemotion_minpicture6_shRatio_opinion01_shspanner01_" + percent+ "_minRatio_" + minRatio+ "_contactRatio_" + contactRatio + "_shRatio_" + shRatio + "_" + trainAndPredictNum + "_less10_withoutE.txt")));
 			//去掉ol 
 			//BufferedWriter bw = new BufferedWriter(new FileWriter(new File("output/getBasicFGMData/wenjing/group1_8_groupemotion_minpicture6_opinionpercent_" + percent+ "_minRatio_" + minRatio+ "_contactRatio_" + contactRatio + "_" + trainAndPredictNum + "_less10_withoutE.txt")));
 			
@@ -5910,7 +5910,7 @@ public class ColorThemeExtractor {
 					line = line + " groupEmotion:" + maxEmotion;
 					num++;
 				}
-				
+				/*
 				//加上opinion leader
 				if(imgUser.containsKey(img) && userOpinionleader.containsKey(imgUser.get(img))){
 					line = line + " opinionleader:" + userOpinionleader.get(imgUser.get(img));
@@ -5919,6 +5919,7 @@ public class ColorThemeExtractor {
 				if(imgUser.containsKey(img) && userSH.containsKey(imgUser.get(img))){
 					line = line + " shspanner:" + userSH.get(imgUser.get(img));
 				}
+				*/
 				//group Type
 				int num0 = 0;//type = 0 的个数
 				int num1 = 0;//type = 1 的个数
@@ -5998,9 +5999,9 @@ public class ColorThemeExtractor {
 	//7/11，新工作
 	public static void factorAnalyse_dxh(int srRatio, int minRatio, int contactRatio, int shRatio){
 		try{
-			BufferedReader br = new BufferedReader(new FileReader(new File("output/getBasicFGMData/DavidDing/group1_8_groupemotion_minpicture6_opinion01_shspanner01_" + srRatio + "_minRatio_" + minRatio + "_contactRatio_" + contactRatio + "_shRatio_" + shRatio + "_6000_less10_withoutE.txt")));
+			BufferedReader br = new BufferedReader(new FileReader(new File("output/getBasicFGMData/DavidDing/delete_ol_sh/group1_8_groupemotion_minpicture6_delete_ol_sh_opinion01_shspanner01_" + srRatio + "_minRatio_" + minRatio + "_contactRatio_" + contactRatio + "_shRatio_" + shRatio + "_6000_less10_withoutE.txt")));
 			
-			BufferedWriter bw1 = new BufferedWriter(new FileWriter(new File("output/factorAnalyse_dxh/2017.7.11/" + srRatio + minRatio + contactRatio + shRatio + "davidding-groupConnect.txt")));
+			BufferedWriter bw1 = new BufferedWriter(new FileWriter(new File("output/factorAnalyse_dxh/2017.7.12_delete_ol_sh/" + srRatio + minRatio + contactRatio + shRatio + "davidding-groupConnect.txt")));
 			
 			String line = "";
 			String str1 = "";
@@ -6035,6 +6036,169 @@ public class ColorThemeExtractor {
 			}
 			br.close();
 			bw1.close();
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	//参数调节好了之后Factor analyse
+	//对模型输入文件group1_8_groupemotion_minpicture6_shRatio_opinion01_shspanner01_18_minRatio_20_contactRatio_4.0_shRatio_12_6000_less10_withoutE.txt进行处理
+	//2017/7/17
+	public static void factorAnalyse_dxh_new(int srRatio, int minRatio, float contactRatio, int shRatio){
+		try{
+			BufferedReader br = new BufferedReader(new FileReader(new File("output/getBasicFGMData/DavidDing/shRatio/group1_8_groupemotion_minpicture6_shRatio_opinion01_shspanner01_" + srRatio + "_minRatio_" + minRatio + "_contactRatio_" + contactRatio + "_shRatio_" + shRatio + "_6000_less10_withoutE.txt")));
+			
+			BufferedWriter bw1 = new BufferedWriter(new FileWriter(new File("output/factorAnalyse_dxh/2017.7.17/" + srRatio + minRatio + contactRatio + shRatio + "davidding-socialrole-f1.txt")));
+			BufferedWriter bw2 = new BufferedWriter(new FileWriter(new File("output/factorAnalyse_dxh/2017.7.17/" + srRatio + minRatio + contactRatio + shRatio + "davidding-socialrole-f2.txt")));
+			BufferedWriter bw3 = new BufferedWriter(new FileWriter(new File("output/factorAnalyse_dxh/2017.7.17/" + srRatio + minRatio + contactRatio + shRatio + "davidding-socialrole-f3.txt")));
+			BufferedWriter bw4 = new BufferedWriter(new FileWriter(new File("output/factorAnalyse_dxh/2017.7.17/" + srRatio + minRatio + contactRatio + shRatio + "davidding-socialrole-f4.txt")));
+			BufferedWriter bw5 = new BufferedWriter(new FileWriter(new File("output/factorAnalyse_dxh/2017.7.17/" + srRatio + minRatio + contactRatio + shRatio + "davidding-socialrole-f5.txt")));
+			BufferedWriter bw6 = new BufferedWriter(new FileWriter(new File("output/factorAnalyse_dxh/2017.7.17/" + srRatio + minRatio + contactRatio + shRatio + "davidding-socialrole-f6.txt")));
+			BufferedWriter bw7 = new BufferedWriter(new FileWriter(new File("output/factorAnalyse_dxh/2017.7.17/" + srRatio + minRatio + contactRatio + shRatio + "davidding-socialrole-f7-groupsize-emotion.txt")));
+			BufferedWriter bw8 = new BufferedWriter(new FileWriter(new File("output/factorAnalyse_dxh/2017.7.17/" + srRatio + minRatio + contactRatio + shRatio + "davidding-socialrole-f7-groupsocialrole.txt")));
+			BufferedWriter bw9 = new BufferedWriter(new FileWriter(new File("output/factorAnalyse_dxh/2017.7.17/" + srRatio + minRatio + contactRatio + shRatio + "davidding-socialrole-f7-groupconnect.txt")));
+			BufferedWriter bw10 = new BufferedWriter(new FileWriter(new File("output/factorAnalyse_dxh/2017.7.17/" + srRatio + minRatio + contactRatio + shRatio + "davidding-socialrole-f7.txt")));
+			BufferedWriter bw11 = new BufferedWriter(new FileWriter(new File("output/factorAnalyse_dxh/2017.7.17/" + srRatio + minRatio + contactRatio + shRatio + "davidding-socialrole.txt")));
+			
+			
+			String line = "";
+			String str1 = "";
+			String str2 = "";//时序性，减去same user 边
+			String str3 = "";
+			String str4 = "";
+			String str5 = "";
+			String str6 = "";
+			String str7 = "";
+			String str8 = "";
+			String str9 = "";
+			String str10 = "";
+			String str11 = "";
+			/*
+			 *featureId.put("gender", "26");
+			featureId.put("marital", "27");
+			featureId.put("occupation", "28");
+			featureId.put("friendSize", "29");//f3,num of friends
+			featureId.put("friendEmotion", "30");//f4 , emotion of friends, f5 is weight edge, 
+			featureId.put("groupSize", "31");
+			featureId.put("groupEmotion", "32");
+			featureId.put("opinionleader", "33");//social role
+			featureId.put("groupType", "34");
+			featureId.put("groupConnectType", "35");
+			 **/
+			String types[] = {"gender", "marital", "occupation", "friendSize", "friendEmotion", "groupSize", "groupEmotion", "groupType", "groupSHType", "groupConnectType"};//"opinionleader", "shspanner",之前是有的
+			while((line = br.readLine()) != null){
+				String p[] = line.split(" "); //p[0] is label; p[1-25] is f1; 
+				if(p.length < 6){
+					bw1.append(line + "\n");
+					bw3.append(line + "\n");
+					bw4.append(line + "\n");
+					bw6.append(line + "\n");
+					bw7.append(line + "\n");
+					bw8.append(line + "\n");
+					bw9.append(line + "\n");
+					bw10.append(line + "\n");
+					bw11.append(line + "\n");
+					if(!(p[0].equals("#edge"))){
+						bw2.append(line+"\n");
+					}else{
+						bw5.append(line+"\n");
+					}
+					continue;
+				}
+				String label = p[0];
+				int i = 0;
+				str1 = label;
+				str2 = label;
+				str3 = label;
+				str4 = label;
+				str5 = label;
+				str6 = label;
+				str7 = label;
+				str8 = label;
+				str9 = label;
+				str10 = label;
+				str11 = label;
+				for(i = 1; i < 26; i++){
+					str2 = str2 + " " + p[i];
+					str3 = str3 + " " + p[i];
+					str4 = str4 + " " + p[i];
+					str5 = str5 + " " + p[i];
+					str6 = str6 + " " + p[i];
+					str7 = str7 + " " + p[i];
+					str8 = str8 + " " + p[i];
+					str9 = str9 + " " + p[i];
+					str10 = str10 + " " + p[i];
+					str11 = str11 + " " + p[i];
+					
+				}
+				Map<String, String> factor = new HashMap<String, String>();//key is attri type, value is attri value
+				for(i = 26; i < p.length; i++){
+					if(p[i].length() <= 1)
+						continue;
+					String attri[] = p[i].split(":");
+					if(attri.length < 2){
+						System.out.println("maybe something error!");
+						continue;
+					}
+					String attriType = attri[0];
+					String attriValue = attri[1];
+					factor.put(attriType, attriValue);
+				}
+				//write bw1
+				Iterator iter = factor.entrySet().iterator();
+				for(i = 0; i < types.length; i++) { 
+					String type = types[i];
+					if(!factor.containsKey(type))
+						continue;
+					String value = factor.get(type);
+					str1 = str1 + " " + type + ":" + value;
+					str2 = str2 + " " + type + ":" + value;//已减去same user
+					str5 = str5 + " " + type + ":" + value;//已减去 weight edge
+					
+					
+					if(!(type.equals("gender") || type.equals("marital") || type.equals("occupation")))
+						str6 = str6 + " " + type + ":" + value;
+					if(!(type.equals("friendSize"))){
+						str3 = str3 + " " + type + ":" + value;
+					}
+					if(!(type.equals("friendEmotion")))
+						str4 = str4 + " " + type + ":" + value;
+					if(!(type.equals("groupSize") || type.equals("groupEmotion")))
+						str7 = str7 + " " + type + ":" + value;
+					if(!(type.equals("groupType") || type.equals("groupSHType")))
+						str8 = str8 + " " + type + ":" + value;
+					if(!(type.equals("groupConnectType")))
+						str9 = str9 + " " + type + ":" + value;
+					if(!(type.equals("groupSize") || type.equals("groupEmotion") || type.equals("groupType") || type.equals("groupSHType") || type.equals("groupConnectType")))
+						str10 = str10 + " " + type + ":"+ value;
+					if(!(type.equals("opinionleader") || type.equals("shspanner")))
+						str11 = str11 + " " + type + ":"+ value;
+				}
+				bw1.append(str1 + "\n");
+				bw2.append(str2 + "\n");
+				bw3.append(str3 + "\n");
+				bw4.append(str4 + "\n");
+				bw5.append(str5 + "\n");
+				bw6.append(str6 + "\n");
+				bw7.append(str7 + "\n");
+				bw8.append(str8 + "\n");
+				bw9.append(str9 + "\n");
+				bw10.append(str10 + "\n");
+				bw11.append(str11 + "\n");
+			}
+			br.close();
+			bw1.close();
+			bw2.close();
+			bw3.close();
+			bw4.close();
+			bw5.close();
+			bw6.close();
+			bw7.close();
+			bw8.close();
+			bw9.close();
+			bw10.close();
+			bw11.close();
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -6080,8 +6244,9 @@ public class ColorThemeExtractor {
 		//new ColorThemeExtractor().getImageStatics_dxh();//David Ding
 		//new ColorThemeExtractor().getIntimacy();//David Ding
 		//new ColorThemeExtractor().getGroupConnect_dxh();//David Ding
-		//new ColorThemeExtractor().getFGMDataGroup2_dxh(6000, 28, 18, 3, 10);//David Ding
-		new ColorThemeExtractor().factorAnalyse_dxh(28, 18, 80, 10);
+		//new ColorThemeExtractor().getFGMDataGroup2_dxh(6000, 18, 20, (float)4, 12);//David Ding
+		new ColorThemeExtractor().factorAnalyse_dxh_new(18, 20, (float)4, 12);
+		//new ColorThemeExtractor().factorAnalyse_dxh(28, 18, 80, 10);
 		//new ColorThemeExtractor().testEdge();
 		
 		// [data observation]

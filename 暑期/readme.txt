@@ -33,3 +33,22 @@ delete_ol_sh/	--去除ol\sh的模型
 	connectRatio/
 		answer_davidding.txt	--12组实验结果
 		answer_order.txt	--12组实验顺序
+
+percent/	--percent参数调节
+	group1_8...	--不同参数的文件
+	answer_davidding.txt	--实验结果
+	order.txt	--结果顺序
+
+minRatio/	--minRation参数调节
+	group1_8...	--不同参数的文件
+	answer_davidding.txt	--实验结果
+	order.txt	--结果顺序
+
+shRatio/	--shRatio参数调节
+	group1_8...	--不同参数的文件
+	answer_davidding.txt	--实验结果
+	order.txt	--结果顺序
+
+数据观测结果/	--连通度与群组情感的相关程度
+	20120601.png	--时间节点为20120601的实验结果
+	20130111.png	--时间节点为20130111的实验结果
