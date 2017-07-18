@@ -1,0 +1,11 @@
+gender marital occupation	-f6
+去除上面三者		-f7
+friendSize			-f3
+friendEmotion		-f4
+groupSize groupEmotion	-f7-groupsize-emotion
+groupType groupSHType	-f7-groupsocialrole
+groupConnectType	-f7-groupconnect
+
+
+完整				-f2, f5, **
+图片本身特征		-f1
